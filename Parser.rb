@@ -38,7 +38,7 @@ class Parser < Scanner
 
 	def match(dtype)
       	if (@lookahead.type != dtype)
-         	puts "Expected #{dtype} found #{@lookahead.type}"
+         	puts "Expected #{dtype} found #{@lookahead.text}"
 					@errors += 1
       	end
       	consume()
@@ -96,10 +96,10 @@ class Parser < Scanner
 
 	def etail()
 		if (@lookahead.type == Token::ADDOP)
-			puts "Found ADDOP token: #{@lookahead.text}"
+			puts "Found ADDOP Token: #{@lookahead.text}"
 			consume()
 		elsif (@lookahead.type == Token::SUBOP)
-			puts "Found SUBOP token: #{@lookahead.text}"
+			puts "Found SUBOP Token: #{@lookahead.text}"
 			consume()
 		else
 			puts "Did not find ADDOP or SUBOP Token, choosing EPSILON production"
@@ -115,12 +115,12 @@ class Parser < Scanner
 
 	def factor()
 		if (@lookahead.type == Token::LPAREN)
-			puts "Found LPAREN token: #{@lookahead.text}"
+			puts "Found LPAREN Token: #{@lookahead.text}"
 			consume()
 			puts "Entering EXP Rule"
 			exp()
 			if (@lookahead.type == Token::RPAREN)
-				puts "Found RPAREN token: #{@lookahead.text}"
+				puts "Found RPAREN Token: #{@lookahead.text}"
 			end
 			match(Token::RPAREN)
 
@@ -138,10 +138,10 @@ class Parser < Scanner
 
 	def ttail()
 		if (@lookahead.type == Token::MULTOP)
-			puts "Found MULTOP token: #{@lookahead.text}"
+			puts "Found MULTOP Token: #{@lookahead.text}"
 			consume()
 		elsif (@lookahead.type == Token::DIVOP)
-			puts "Found DIVOP token: #{@lookahead.text}"
+			puts "Found DIVOP Token: #{@lookahead.text}"
 			consume()
 		else
 			puts "Did not find MULTOP or DIVOP Token, choosing EPSILON production"
@@ -157,14 +157,14 @@ class Parser < Scanner
 
 	def int()
 		if (@lookahead.type == Token::INT)
-			puts "Found INT token: #{@lookahead.text}"
+			puts "Found INT Token: #{@lookahead.text}"
 		end
 		match(Token::INT)
 	end
 
 	def id()
 		if (@lookahead.type == Token::ID)
-			puts "Found ID token: #{@lookahead.text}"
+			puts "Found ID Token: #{@lookahead.text}"
 		end
 		match(Token::ID)
 	end
